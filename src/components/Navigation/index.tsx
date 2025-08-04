@@ -180,7 +180,8 @@ const MobileMenu = styled.div<{ isOpen: boolean }>`
 
 const Navigation: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-  const { theme } = useTheme();
+  // Theme is not currently used but kept for future theming
+  useTheme();
   const menuRef = React.useRef<HTMLDivElement>(null);
   const [isTransitioning, setIsTransitioning] = React.useState(false);
 
@@ -214,7 +215,7 @@ const Navigation: React.FC = () => {
   React.useEffect(() => {
     if (!isMobileMenuOpen) return;
 
-    const handleClickOutside = (e: MouseEvent) => {
+    const handleClickOutside = (e: Event) => {
       const target = e.target as HTMLElement;
       const menu = menuRef.current;
       const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
@@ -226,13 +227,16 @@ const Navigation: React.FC = () => {
 
     // Add event listeners for both click and touch events
     document.addEventListener('click', handleClickOutside, true);
-    document.addEventListener('touchstart', handleClickOutside, true);
+    
+    // For touch devices, we'll use the same handler but type it correctly
+    const touchHandler = handleClickOutside as EventListener;
+    document.addEventListener('touchstart', touchHandler, true);
     
     return () => {
       document.removeEventListener('click', handleClickOutside, true);
-      document.removeEventListener('touchstart', handleClickOutside, true);
+      document.removeEventListener('touchstart', touchHandler, true);
     };
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, isTransitioning]);
 
 
   return (

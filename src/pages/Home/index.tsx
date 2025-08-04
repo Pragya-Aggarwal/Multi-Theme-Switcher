@@ -152,7 +152,7 @@ const Home: React.FC = () => {
       )}
 
       <ProductsGrid>
-        {filteredProducts.map((product, index) => (
+        {filteredProducts.map((product) => (
           <Card
             key={product.id}
             title={product.title}
