@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTheme } from '../../contexts/ThemeContext';
 
@@ -180,8 +180,8 @@ const MobileMenu = styled.div<{ isOpen: boolean }>`
 
 const Navigation: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-  // Theme is not currently used but kept for future theming
-  useTheme();
+  const navigate = useNavigate();
+  useTheme(); // Theme context is used for potential future theming
   const menuRef = React.useRef<HTMLDivElement>(null);
   const [isTransitioning, setIsTransitioning] = React.useState(false);
 
@@ -209,6 +209,12 @@ const Navigation: React.FC = () => {
     setTimeout(() => {
       setIsTransitioning(false);
     }, 300);
+  };
+  
+  const handleNavigation = (e: React.MouseEvent, path: string) => {
+    e.preventDefault();
+    closeMobileMenu(e);
+    navigate(path);
   };
 
   // Close menu when clicking outside
@@ -245,28 +251,19 @@ const Navigation: React.FC = () => {
         <NavItem 
           to="/" 
           end
-          onClick={(e) => {
-            e.preventDefault();
-            window.location.href = '/';
-          }}
+          onClick={(e) => handleNavigation(e, '/')}
         >
           Home
         </NavItem>
         <NavItem 
           to="/about"
-          onClick={(e) => {
-            e.preventDefault();
-            window.location.href = '/about';
-          }}
+          onClick={(e) => handleNavigation(e, '/about')}
         >
           About
         </NavItem>
         <NavItem 
           to="/contact"
-          onClick={(e) => {
-            e.preventDefault();
-            window.location.href = '/contact';
-          }}
+          onClick={(e) => handleNavigation(e, '/contact')}
         >
           Contact
         </NavItem>
@@ -297,33 +294,21 @@ const Navigation: React.FC = () => {
           <NavItem 
             to="/" 
             end 
-            onClick={(e) => {
-              e.preventDefault();
-              closeMobileMenu(e);
-              window.location.href = '/';
-            }}
+            onClick={(e) => handleNavigation(e, '/')}
             style={{ marginTop: '0.5rem' }}
           >
             Home
           </NavItem>
           <NavItem 
             to="/about" 
-            onClick={(e) => {
-              e.preventDefault();
-              closeMobileMenu(e);
-              window.location.href = '/about';
-            }}
+            onClick={(e) => handleNavigation(e, '/about')}
             style={{ margin: '0.5rem 0' }}
           >
             About
           </NavItem>
           <NavItem 
             to="/contact" 
-            onClick={(e) => {
-              e.preventDefault();
-              closeMobileMenu(e);
-              window.location.href = '/contact';
-            }}
+            onClick={(e) => handleNavigation(e, '/contact')}
             style={{ marginBottom: '1rem' }}
           >
             Contact
