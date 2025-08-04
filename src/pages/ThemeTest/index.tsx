@@ -44,13 +44,13 @@ const ThemeTest: React.FC = () => {
         <h2>Theme Controls</h2>
         <div>
           <Button onClick={() => setTheme('theme1')} disabled={theme === 'theme1'}>
-            Theme Light
+            Light
           </Button>
           <Button onClick={() => setTheme('theme2')} disabled={theme === 'theme2'}>
-            Theme Dark
+            Dark
           </Button>
           <Button onClick={() => setTheme('theme3')} disabled={theme === 'theme3'}>
-            Theme Colorful
+            Colorful
           </Button>
         </div>
         <p>Current Theme: {theme}</p>

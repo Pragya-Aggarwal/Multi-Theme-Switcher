@@ -1,4 +1,3 @@
-// Theme type definitions
 export type ThemeType = 'theme1' | 'theme2' | 'theme3';
 
 export interface ThemeColors {
@@ -12,6 +11,7 @@ export interface ThemeColors {
   success: string;
   warning: string;
   error: string;
+  hover: string;
 }
 
 export interface ThemeFonts {
@@ -63,6 +63,7 @@ export const theme1: Theme = {
     success: '#28a745',
     warning: '#ffc107',
     error: '#dc3545',
+    hover: 'rgba(74, 111, 165, 0.1)',
   },
   fonts: {
     primary: '"Inter", "Helvetica", "Arial", sans-serif',
@@ -85,6 +86,7 @@ export const theme2: Theme = {
     success: '#00b894',
     warning: '#fdcb6e',
     error: '#ff7675',
+    hover: 'rgba(108, 92, 231, 0.2)',
   },
   fonts: {
     primary: '"Georgia", "Times New Roman", serif',
@@ -107,6 +109,7 @@ export const theme3: Theme = {
     success: '#1dd1a1',
     warning: '#ff9f43',
     error: '#ff6b6b',
+    hover: 'rgba(255, 107, 107, 0.1)',
   },
   fonts: {
     primary: '"Pacifico", cursive',

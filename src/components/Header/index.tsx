@@ -9,10 +9,10 @@ const HeaderContainer = styled.header<{ themeName: string }>`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
-  padding: 0.75rem 2rem;
+  z-index: 1000; /* Higher than mobile menu */
+  padding: 0.75rem 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   transition: var(--transition);
   background-color: ${({ themeName }) => 
@@ -30,8 +30,8 @@ const HeaderContainer = styled.header<{ themeName: string }>`
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     `}
   
-  @media (max-width: 768px) {
-    padding: 0.75rem 1rem;
+  @media (max-width: 480px) {
+    padding: 0.5rem;
   }
 `;
 
@@ -42,6 +42,11 @@ const HeaderContent = styled.div`
   width: 100%;
   margin: 0 auto;
   justify-content: space-between;
+  padding: 0 1rem;
+  
+  @media (max-width: 480px) {
+    padding: 0 0.5rem;
+  }
 `;
 
 const Logo = styled.div`
@@ -63,7 +68,7 @@ const ThemeSelector = styled.div`
 `;
 
 const Select = styled.select`
-  padding: 0.5rem 2rem 0.5rem 1rem;
+  padding: 0.5rem 1.75rem 0.5rem 0.75rem;
   border-radius: var(--border-radius);
   border: 1px solid var(--border);
   background-color: var(--surface);
@@ -72,6 +77,16 @@ const Select = styled.select`
   cursor: pointer;
   appearance: none;
   transition: var(--transition);
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  @media (max-width: 480px) {
+    padding: 0.4rem 1.5rem 0.4rem 0.6rem;
+    font-size: 0.85rem;
+    max-width: 100px;
+  }
   
   &:focus {
     outline: none;
@@ -115,9 +130,9 @@ const Header: React.FC = () => {
               onChange={handleThemeChange}
               aria-label="Select theme"
             >
-              <option value="theme1">Theme Light</option>
-              <option value="theme2">Theme Dark</option>
-              <option value="theme3">Theme Colorful</option>
+              <option value="theme1">Light</option>
+              <option value="theme2">Dark</option>
+              <option value="theme3">Colorful</option>
             </Select>
             <SelectArrow>▼</SelectArrow>
           </ThemeSelector>

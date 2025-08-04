@@ -9,7 +9,6 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import ThemeTest from './pages/ThemeTest';
 
-// Wrapper component to access theme context
 const ThemedApp: React.FC = () => {
   const { theme } = useTheme();
   const currentTheme = getTheme(theme as ThemeType);

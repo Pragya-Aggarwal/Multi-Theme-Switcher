@@ -12,7 +12,6 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
-    // Check localStorage for saved theme, default to theme1
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme') as Theme | null;
       return savedTheme || 'theme1';
@@ -25,7 +24,6 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     localStorage.setItem('theme', newTheme);
   };
 
-  // Update the data-theme attribute on the html element
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);

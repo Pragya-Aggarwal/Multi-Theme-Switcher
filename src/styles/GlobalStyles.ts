@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import type { Theme } from './theme';
 
-// Extend styled-components default theme with our theme
 declare module 'styled-components' {
   export interface DefaultTheme extends Theme {}
 }
@@ -48,6 +47,9 @@ export const GlobalStyles = createGlobalStyle`
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   h1, h2, h3, h4, h5, h6 {
